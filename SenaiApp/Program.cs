@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using SenaiApi.Repository.Repositorios;
 using SenaiApp.Repository.Contexts;
+using SenaiApp.Repository.Interfaces;
+using Service.Interface;
+using Service.Service;
 using System;
 
 namespace SenaiApp
@@ -17,7 +21,10 @@ namespace SenaiApp
 
             //builder.Services.AddScoped<IPessoaService, PessoaService>();
             //builder.Services.AddScoped<IPessoaRepository, PessoaRepositorio>();
-           // builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            // builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            builder.Services.AddScoped<IClienteService, ClienteService>();
+            builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 
             builder.Services.AddDbContext<SenaiAppContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetValue<string>("ConnectionStrings:SenaiApp")));

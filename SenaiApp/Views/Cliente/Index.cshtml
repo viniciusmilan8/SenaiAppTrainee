@@ -1,34 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Pagina do Cliente";
+﻿@using SenaiApp.Domain.Entidade;
+@{
+    var todosClientes = (List<Cliente>)ViewBag.Cliente;
 }
 
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Sobrenome</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Deletar</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>TESTEZINHO</td>
-            <td>mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>twitter</td>
-        </tr>
+        @{
+            foreach (var cliente in todosClientes)
+            {
+                <tr>
+                    <th scope="row">@cliente.Id</th>
+                    <td>@cliente.Nome</td>
+                    <td>@cliente.Sobrenome</td>
+                    <td>@cliente.Sexo</td>
+                    <td><a href="Cliente/Remover/@cliente.Id" class="btn btn-danger">Deletar</a></td>
+                </tr>
+            }
+        }
     </tbody>
     <a class="btn btn-dark" asp-area="" asp-controller="Cliente" asp-action="Form">Novo</a>
 </table>

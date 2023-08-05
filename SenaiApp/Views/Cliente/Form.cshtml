@@ -1,8 +1,31 @@
-﻿@{
-}
+﻿@using SenaiApp.Domain.Entidade;
+@using SenaiApp.Domain.Enums;
+@model Cliente
 
 <h1>Inserir Novo Cliente</h1>
-<div class="col-auto">
-    <label for="exampleFormControlInput1" class="form-label">Nome</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1">
-</div>
+
+<form class="row-3" method="post">
+    <div class="row" style="margin-bottom: 5px">
+        <div class="col-3">
+            <label for="exampleFormControlInput1" class="form-label">Nome</label>
+            <input type="text" class="form-control" asp-for="Nome">
+        </div>
+        <div class="col-3">
+            <label for="exampleFormControlInput1" class="form-label">Sobrenome</label>
+            <input type="text" class="form-control" asp-for="Sobrenome">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <label class="form-label" asp-for="Sexo">Sexo</label>
+            <select asp-for="Sexo" class="form-control" asp-items="Html.GetEnumSelectList<SexoEnum>()"></select>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-3">
+            <label class="form-label">Data de Nascimento</label>
+            <input type="text" class="form-control" asp-for="DataNascimento">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-dark">Salvar</button>
+</form>

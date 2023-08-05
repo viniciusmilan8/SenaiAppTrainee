@@ -8,7 +8,9 @@ namespace SenaiApp.Repository.Contexts
 {
     public class SenaiAppContext : DbContext
     {
-        public SenaiAppContext(DbContextOptions<SenaiAppContext> options) : base(options) { }
+        public SenaiAppContext(DbContextOptions<SenaiAppContext> options) : base(options) {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        }
 
         public DbSet<Cliente> Cliente { get; set; }
 
